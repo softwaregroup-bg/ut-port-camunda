@@ -4869,7 +4869,7 @@
         "tags" : [ "External" ],
         "summary" : "Fetches and locks a specific number of external tasks for execution by a worker.",
         "description" : "Fetches and locks a specific number of external tasks for execution by a worker. Query can be restricted to specific task topics and for each task topic an individual lock time can be provided.",
-        "operationId" : "task.fetch",
+        "operationId" : "external.fetch",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -10596,7 +10596,7 @@
         "tags" : [ "Task" ],
         "summary" : "Queries for tasks that fulfill a given filter.",
         "description" : "Queries for tasks that fulfill a given filter. The size of the result set can be retrieved by using the Get Task Count method.There are several query parameters (such as `assigneeExpression`) for specifying an EL expression. These are disabled by default to prevent remote code execution. See the section on security considerations for custom code in the user guide for details.",
-        "operationId" : "getTasks",
+        "operationId" : "task.fetch",
         "produces" : [ "application/json", "application/hal+json" ],
         "parameters" : [ {
           "name" : "firstResult",
