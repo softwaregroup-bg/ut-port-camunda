@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/env: demo
+  name: camunda
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: platform
+    app.kubernetes.io/env: demo
+  name: camunda-bpm
+  namespace: camunda
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+  selector:
+    app.kubernetes.io/component: platform
+    app.kubernetes.io/env: demo
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: platform
+    app.kubernetes.io/env: demo
+  name: camunda-bpm
+  namespace: camunda
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: platform
+      app.kubernetes.io/env: demo
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/app: camunda-bpm
+        app.kubernetes.io/component: platform
+        app.kubernetes.io/env: demo
+    spec:
+      containers:
+      - image: camunda/camunda-bpm-platform:latest
+        livenessProbe:
+          httpGet:
+            path: /camunda
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 15
+        name: camunda-bpm
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 9404
+          name: metrics
+        readinessProbe:
+          httpGet:
+            path: /camunda
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 15
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 300m
+            memory: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 1000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app.kubernetes.io/component: platform
+    app.kubernetes.io/env: demo
+  name: camunda-bpm
+  namespace: camunda
+spec:
+  rules:
+  - host: camunda.k8s.softwaregroup-bg.com
+    http:
+      paths:
+      - backend:
+          serviceName: camunda-bpm
+          servicePort: http
