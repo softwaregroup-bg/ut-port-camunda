@@ -6,7 +6,7 @@
   "devDependencies": {
     "sort-keys": "2.0.0",
     "tap": "^12.5.3",
-    "ut-tools": "^6.8.10"
+    "ut-tools": "^6.29.12"
   },
   "peerDependencies": {
     "ut-bus": "^7.10.1",
