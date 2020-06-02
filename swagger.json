@@ -66,20 +66,6 @@
         "operationId" : "queryAuthorizations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "resourceId",
           "in" : "query",
           "description" : "Filter by resource id.",
@@ -159,7 +145,6 @@
         "tags" : [ "Authorization" ],
         "summary" : "The `/authorization` resource supports two custom OPTIONS requests, one for the resource as such and one for individual authorization instances.",
         "description" : "The `/authorization` resource supports two custom OPTIONS requests, one for the resource as such and one for individual authorization instances. The OPTIONS request allows you to check for the set of available operations that the currently authenticated user can perform on the `/authorization` resource. Whether the user can perform an operation or not may depend on various factors, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
@@ -396,7 +381,6 @@
         "tags" : [ "Authorization" ],
         "summary" : "The `/authorization` resource supports two custom OPTIONS requests, one for the resource as such and one for individual authorization instances.",
         "description" : "The `/authorization` resource supports two custom OPTIONS requests, one for the resource as such and one for individual authorization instances. The OPTIONS request allows you to check for the set of available operations that the currently authenticated user can perform on the `/authorization` resource. Whether the user can perform an operation or not may depend on various factors, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -423,20 +407,6 @@
         "operationId" : "getBatches",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "tenantIdIn",
           "in" : "query",
           "description" : "Filter by a comma-separated list of tenant ids. A batch matches if it has one of the given tenant ids.",
@@ -557,23 +527,9 @@
         "tags" : [ "Batch" ],
         "summary" : "Queries for batch statistics that fulfill given parameters.",
         "description" : "Queries for batch statistics that fulfill given parameters. Parameters may be the properties of batches, such as the id or type.  The size of the result set can be retrieved by using the Get Batch Statistics Count method.",
-        "operationId" : "getStatistics",
+        "operationId" : "getBatchStatistics",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "tenantIdIn",
           "in" : "query",
           "description" : "Filter by a comma-separated list of tenant ids. A batch matches if it has one of the given tenant ids.",
@@ -741,7 +697,7 @@
         "tags" : [ "Batch" ],
         "summary" : "Activates or suspends a batch by id.",
         "description" : "Activates or suspends a batch by id.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateBatchSuspensionState",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
@@ -776,20 +732,6 @@
         "operationId" : "getCaseDefinitions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "resourceNameLike",
           "in" : "query",
           "description" : "Filter by names of those case definition resources that the parameter is a substring of.",
@@ -1144,7 +1086,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Updates history time to live for case definition with given id.",
         "description" : "Updates history time to live for case definition with given id. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateCaseHistoryTimeToLive",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1210,7 +1152,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Instantiates a given case definition.",
         "description" : "Instantiates a given case definition. Case variables and business key may be supplied in the request body.",
-        "operationId" : "createCaseInstance",
+        "operationId" : "createCaseInstanceTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1261,7 +1203,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Retrieves the diagram of a case definition.",
         "description" : "Retrieves the diagram of a case definition.",
-        "operationId" : "getCaseDefinitionDiagram",
+        "operationId" : "getCaseDefinitionDiagramTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -1294,7 +1236,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Updates history time to live for case definition with given id.",
         "description" : "Updates history time to live for case definition with given id. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateCaseHistoryTimeToLiveTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1336,7 +1278,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Retrieves the CMMN XML of a case definition.",
         "description" : "Retrieves the CMMN XML of a case definition.",
-        "operationId" : "getCaseDefinitionCmmnXml",
+        "operationId" : "getCaseDefinitionCmmnXmlTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -1420,7 +1362,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Instantiates a given case definition.",
         "description" : "Instantiates a given case definition. Case variables and business key may be supplied in the request body.",
-        "operationId" : "createCaseInstance",
+        "operationId" : "createCaseInstanceId",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1465,7 +1407,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Retrieves the diagram of a case definition.",
         "description" : "Retrieves the diagram of a case definition.",
-        "operationId" : "getCaseDefinitionDiagram",
+        "operationId" : "getCaseDefinitionDiagramId",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -1492,7 +1434,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Updates history time to live for case definition with given id.",
         "description" : "Updates history time to live for case definition with given id. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateHistoryTimeToLiveId",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1528,7 +1470,7 @@
         "tags" : [ "Case Definition" ],
         "summary" : "Retrieves the CMMN XML of a case definition.",
         "description" : "Retrieves the CMMN XML of a case definition.",
-        "operationId" : "getCaseDefinitionCmmnXml",
+        "operationId" : "getCaseDefinitionCmmnXmlId",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -1558,20 +1500,6 @@
         "operationId" : "getCaseExecutions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "caseExecutionId",
           "in" : "query",
           "description" : "Filter by a case execution id.",
@@ -1903,7 +1831,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "title: \"Complete Case Execution\" weight: 70.",
         "description" : "title: \"Complete Case Execution\" weight: 70",
-        "operationId" : "complete",
+        "operationId" : "completeCase",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2003,7 +1931,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Updates or deletes the variables in the context of a case execution.",
         "description" : "Updates or deletes the variables in the context of a case execution. The updates do not propagate upwards in the case execution hierarchy. Please note: deletion precedes update.",
-        "operationId" : "modifyVariables",
+        "operationId" : "modifyLocalVariables",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2039,7 +1967,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Retrieves a variable from the context of a given case execution.",
         "description" : "Retrieves a variable from the context of a given case execution. Does not traverse the parent case execution hierarchy.",
-        "operationId" : "getVariable",
+        "operationId" : "getCaseVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -2077,7 +2005,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Sets a variable in the context of a given case execution.",
         "description" : "Sets a variable in the context of a given case execution. Update does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "putVariable",
+        "operationId" : "putCaseVariable",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2114,7 +2042,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Deletes a variable in the context of a given case execution.",
         "description" : "Deletes a variable in the context of a given case execution. Deletion does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "deleteVariable",
+        "operationId" : "deleteLocalVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -2141,7 +2069,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Retrieves a binary variable from the context of a given case execution.",
         "description" : "Retrieves a binary variable from the context of a given case execution. Does not traverse the parent case execution hierarchy. Applicable for byte array and file variables.",
-        "operationId" : "getVariableBinary",
+        "operationId" : "getCaseVariableBinary",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -2172,7 +2100,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
         "description" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
-        "operationId" : "setBinaryVariable",
+        "operationId" : "setCaseLocalBinaryVariable",
         "consumes" : [ "multipart/form-data" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2328,7 +2256,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Retrieves all variables of a given case execution by id.",
         "description" : "Retrieves all variables of a given case execution by id.",
-        "operationId" : "getVariables",
+        "operationId" : "getCaseVariables",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -2350,7 +2278,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Updates or deletes the variables in the context of a case execution.",
         "description" : "Updates or deletes the variables in the context of a case execution. The updates do not propagate upwards in the case execution hierarchy. Please note: deletion precedes update.",
-        "operationId" : "modifyVariables",
+        "operationId" : "modifyCaseVariables",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2386,7 +2314,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Retrieves a variable from the context of a given case execution.",
         "description" : "Retrieves a variable from the context of a given case execution. Does not traverse the parent case execution hierarchy.",
-        "operationId" : "getVariable",
+        "operationId" : "getExecVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -2461,7 +2389,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Deletes a variable in the context of a given case execution.",
         "description" : "Deletes a variable in the context of a given case execution. Deletion does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "deleteVariable",
+        "operationId" : "deleteCaseVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -2488,7 +2416,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Retrieves a binary variable from the context of a given case execution.",
         "description" : "Retrieves a binary variable from the context of a given case execution. Does not traverse the parent case execution hierarchy. Applicable for byte array and file variables.",
-        "operationId" : "getVariableBinary",
+        "operationId" : "getExecutionVariableBinary",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -2519,7 +2447,7 @@
         "tags" : [ "Case Execution" ],
         "summary" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
         "description" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
-        "operationId" : "setBinaryVariable",
+        "operationId" : "setCaseBinaryVariable",
         "consumes" : [ "multipart/form-data" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2561,20 +2489,6 @@
         "operationId" : "getDecisionDefinitions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "resourceNameLike",
           "in" : "query",
           "description" : "Filter by names of those decision definition resources that the parameter is a substring of.",
@@ -2884,7 +2798,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Retrieves the diagram of a decision definition.",
         "description" : "Retrieves the diagram of a decision definition.",
-        "operationId" : "getDecisionDefinitionDiagram",
+        "operationId" : "getDecisionDefinitionDiagramKey",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -2905,7 +2819,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Evaluates a given decision and returns the result.",
         "description" : "Evaluates a given decision and returns the result. The input values of the decision have to be supplied in the request body.",
-        "operationId" : "evaluateDecision",
+        "operationId" : "evaluateDecisionKey",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -2941,7 +2855,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Updates history time to live for decision definition.",
         "description" : "Updates history time to live for decision definition. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateHistoryTimeToLiveTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -3004,7 +2918,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Retrieves the diagram of a decision definition.",
         "description" : "Retrieves the diagram of a decision definition.",
-        "operationId" : "getDecisionDefinitionDiagram",
+        "operationId" : "getDecisionDefinitionDiagramTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -3031,7 +2945,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Evaluates a given decision and returns the result.",
         "description" : "Evaluates a given decision and returns the result. The input values of the decision have to be supplied in the request body.",
-        "operationId" : "evaluateDecision",
+        "operationId" : "evaluateDecisionTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -3073,7 +2987,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Updates history time to live for decision definition.",
         "description" : "Updates history time to live for decision definition. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateDecisionHistoryTimeToLive",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -3115,7 +3029,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Retrieves the DMN XML of a decision definition.",
         "description" : "Retrieves the DMN XML of a decision definition.",
-        "operationId" : "getDecisionDefinitionDmnXml",
+        "operationId" : "getDecisionDefinitionDmnXmlTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -3145,7 +3059,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Retrieves the DMN XML of a decision definition.",
         "description" : "Retrieves the DMN XML of a decision definition.",
-        "operationId" : "getDecisionDefinitionDmnXml",
+        "operationId" : "getDecisionDefinitionDmnXmlKey",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -3247,7 +3161,7 @@
         "tags" : [ "Decision Definition" ],
         "summary" : "Updates history time to live for decision definition.",
         "description" : "Updates history time to live for decision definition. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateHistoryTimeToLiveDecision",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -3310,20 +3224,6 @@
         "operationId" : "getDeployments",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "before",
           "in" : "query",
           "description" : "Restricts to all deployments before the given date. The date must have the format yyyy-MM-dd'T'HH:mm:ss, e.g., 2013-01-23T14:42:45.",
@@ -3609,12 +3509,6 @@
           "description" : "true, if only the built-in ExecutionListeners should be notified with the end event.",
           "required" : false,
           "type" : "string"
-        }, {
-          "name" : "id",
-          "in" : "path",
-          "description" : "Parameter deploymentId",
-          "required" : true,
-          "type" : "string"
         } ],
         "responses" : {
           "204" : {
@@ -3756,20 +3650,6 @@
         "operationId" : "getExecutions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "processDefinitionId",
           "in" : "query",
           "description" : "Filter by the process definition the executions run on.",
@@ -4172,7 +4052,7 @@
         "tags" : [ "Execution" ],
         "summary" : "Updates or deletes the variables in the context of a case execution.",
         "description" : "Updates or deletes the variables in the context of a case execution. The updates do not propagate upwards in the case execution hierarchy. Please note: deletion precedes update.",
-        "operationId" : "modifyVariables",
+        "operationId" : "modifyExecutionVariables",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -4208,7 +4088,7 @@
         "tags" : [ "Execution" ],
         "summary" : "Retrieves a variable from the context of a given case execution.",
         "description" : "Retrieves a variable from the context of a given case execution. Does not traverse the parent case execution hierarchy.",
-        "operationId" : "getVariable",
+        "operationId" : "getExecutionVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -4246,7 +4126,7 @@
         "tags" : [ "Execution" ],
         "summary" : "Sets a variable in the context of a given case execution.",
         "description" : "Sets a variable in the context of a given case execution. Update does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "putVariable",
+        "operationId" : "putExecutionVariable",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -4283,7 +4163,7 @@
         "tags" : [ "Execution" ],
         "summary" : "Deletes a variable in the context of a given case execution.",
         "description" : "Deletes a variable in the context of a given case execution. Deletion does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "deleteVariable",
+        "operationId" : "deleteExecutionVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -4310,7 +4190,7 @@
         "tags" : [ "Execution" ],
         "summary" : "Retrieves a binary variable from the context of a given case execution.",
         "description" : "Retrieves a binary variable from the context of a given case execution. Does not traverse the parent case execution hierarchy. Applicable for byte array and file variables.",
-        "operationId" : "getVariableBinary",
+        "operationId" : "getLocalVariableBinary",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -4341,7 +4221,7 @@
         "tags" : [ "Execution" ],
         "summary" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
         "description" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
-        "operationId" : "setBinaryVariable",
+        "operationId" : "setLocalBinaryVariable",
         "consumes" : [ "multipart/form-data" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -4488,20 +4368,6 @@
         "operationId" : "getExternalTasks",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "processInstanceId",
           "in" : "query",
           "description" : "Filter by the id of the process instance that an external task belongs to.",
@@ -5163,7 +5029,7 @@
         "tags" : [ "External" ],
         "summary" : "Sets the number of retries left to execute an external task by id.",
         "description" : "Sets the number of retries left to execute an external task by id. If retries are set to 0, an incident is created.",
-        "operationId" : "setRetries",
+        "operationId" : "setRetriesId",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
@@ -5224,26 +5090,6 @@
         "operationId" : "getFilters",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "itemCount",
-          "in" : "query",
-          "description" : "Parameter itemCount",
-          "required" : false,
-          "type" : "boolean"
-        }, {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "filterId",
           "in" : "query",
           "description" : "Filter by the id of the filter.",
@@ -5323,7 +5169,6 @@
         "tags" : [ "Filter" ],
         "summary" : "The `/filter` resource supports two custom OPTIONS requests, one for the resource as such and one for individual filter instances.",
         "description" : "The `/filter` resource supports two custom OPTIONS requests, one for the resource as such and one for individual filter instances. The OPTIONS request allows you to check for the set of available operations that the currently authenticated user can perform on the `/filter` resource. Whether the user can perform an operation or not may depend on various factors, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
@@ -5505,7 +5350,6 @@
         "tags" : [ "Filter" ],
         "summary" : "The `/filter` resource supports two custom OPTIONS requests, one for the resource as such and one for individual filter instances.",
         "description" : "The `/filter` resource supports two custom OPTIONS requests, one for the resource as such and one for individual filter instances. The OPTIONS request allows you to check for the set of available operations that the currently authenticated user can perform on the `/filter` resource. Whether the user can perform an operation or not may depend on various factors, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -5770,20 +5614,6 @@
         "operationId" : "queryGroups",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "nameLike",
           "in" : "query",
           "description" : "Filter by the name that the parameter is a substring of.",
@@ -5863,7 +5693,6 @@
         "tags" : [ "Group" ],
         "summary" : "The `/group` resource supports two custom OPTIONS requests, one for the resource as such and one for individual group instances.",
         "description" : "The `/group` resource supports two custom OPTIONS requests, one for the resource as such and one for individual group instances. The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the `/group` resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
@@ -6051,7 +5880,6 @@
         "tags" : [ "Group" ],
         "summary" : "The `/group` resource supports two custom OPTIONS requests, one for the resource as such and one for individual group instances.",
         "description" : "The `/group` resource supports two custom OPTIONS requests, one for the resource as such and one for individual group instances. The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the `/group` resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -6094,7 +5922,6 @@
         "tags" : [ "Group" ],
         "summary" : "The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the resource.",
         "description" : "The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -6242,20 +6069,6 @@
         "operationId" : "getJobs",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "withRetriesLeft",
           "in" : "query",
           "description" : "Only select jobs which have retries left. Value may only be true, as false is the default behavior.",
@@ -6766,7 +6579,7 @@
         "tags" : [ "Job Definition" ],
         "summary" : "Activates or suspends job definitions with the given process definition id.",
         "description" : "Activates or suspends job definitions with the given process definition id.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateJobSuspensionState",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -6817,7 +6630,7 @@
         "tags" : [ "Job Definition" ],
         "summary" : "Sets an overriding execution priority for jobs with the given definition id.",
         "description" : "Sets an overriding execution priority for jobs with the given definition id. Optionally, the priorities of all the definition's existing jobs are updated accordingly. The priority can be reset by setting it to null, meaning that a new job's priority will not be determined based on its definition's priority any longer. See the user guide on job prioritization for details.",
-        "operationId" : "setJobPriority",
+        "operationId" : "setJobPriorityDefinition",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -6853,7 +6666,7 @@
         "tags" : [ "Job Definition" ],
         "summary" : "Sets the number of retries of all failed jobs associated with the given job definition id.",
         "description" : "Sets the number of retries of all failed jobs associated with the given job definition id.",
-        "operationId" : "setJobRetries",
+        "operationId" : "setJobRetriesDefinition",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -6886,7 +6699,7 @@
         "tags" : [ "Job Definition" ],
         "summary" : "Activates or suspends a given job definition by id.",
         "description" : "Activates or suspends a given job definition by id.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateJobDefintitionSuspensionStateId",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -7097,7 +6910,7 @@
         "tags" : [ "Job Execution" ],
         "summary" : "Create a batch to set retries of jobs asynchronously.",
         "description" : "Create a batch to set retries of jobs asynchronously.",
-        "operationId" : "setRetries",
+        "operationId" : "setRetriesJob",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -7365,7 +7178,7 @@
         "tags" : [ "Job Execution" ],
         "summary" : "Activates or suspends a given job by id.",
         "description" : "Activates or suspends a given job by id.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateJobSuspensionStateId",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -7574,20 +7387,6 @@
         "operationId" : "getProcessDefinitions",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "resourceNameLike",
           "in" : "query",
           "description" : "Filter by names of those process definition resources that the parameter is a substring of.",
@@ -7976,7 +7775,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Delete Process Definition.",
         "description" : "Delete Process Definition",
-        "operationId" : "deleteProcessDefinition",
+        "operationId" : "deleteProcessDefinitionKey",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "cascade",
@@ -8058,7 +7857,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the diagram of a process definition.",
         "description" : "Retrieves the diagram of a process definition.",
-        "operationId" : "getProcessDefinitionDiagram",
+        "operationId" : "getProcessDefinitionDiagramKey",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -8128,7 +7927,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Updates history time to live for process definition.",
         "description" : "Updates history time to live for process definition. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateProcessHistoryTimeToLive",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8164,7 +7963,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the rendered form for a process definition.",
         "description" : "Retrieves the rendered form for a process definition. This method can be used for getting the HTML rendering of a Generated Task Form.",
-        "operationId" : "getRenderedForm",
+        "operationId" : "getProcessRenderedFormKey",
         "produces" : [ "application/xhtml+xml" ],
         "parameters" : [ {
           "name" : "key",
@@ -8191,7 +7990,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Restart Process Instance.",
         "description" : "Restart Process Instance",
-        "operationId" : "restartProcessInstance",
+        "operationId" : "restartProcessInstanceKey",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8213,7 +8012,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Restart Process Instance Async.",
         "description" : "Restart Process Instance Async",
-        "operationId" : "restartProcessInstanceAsync",
+        "operationId" : "restartProcessInstanceAsyncKey",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8280,7 +8079,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the key of the start form for a process definition.",
         "description" : "Retrieves the key of the start form for a process definition. The form key corresponds to the `FormData#formKey` property in the engine.",
-        "operationId" : "getStartForm",
+        "operationId" : "getProcessStartForm",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -8310,7 +8109,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves runtime statistics of a given process definition, grouped by activities.",
         "description" : "Retrieves runtime statistics of a given process definition, grouped by activities. These statistics include the number of running activity instances, optionally the number of failed jobs and also optionally the number of incidents either grouped by incident types or for a specific incident type.\n Note: This does not include historic data.",
-        "operationId" : "getActivityStatistics",
+        "operationId" : "getActivityStatisticsKey",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "failedJobs",
@@ -8361,7 +8160,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Starts a process instance using a set of process variables and the business key.",
         "description" : "Starts a process instance using a set of process variables and the business key. If the start event has Form Field Metadata defined, the process engine will perform backend validation for any form fields which have validators defined. See Documentation on Generated Task Forms.",
-        "operationId" : "submitForm",
+        "operationId" : "submitFormKey",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8406,7 +8205,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Activates or suspends a given process definition by id or by latest version of process definition key.",
         "description" : "Activates or suspends a given process definition by id or by latest version of process definition key.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateProcessSuspensionState",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8470,7 +8269,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Delete Process Definition.",
         "description" : "Delete Process Definition",
-        "operationId" : "deleteProcessDefinition",
+        "operationId" : "deleteProcessDefinitionTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "cascade",
@@ -8542,7 +8341,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Get Deployed Start Form.",
         "description" : "Get Deployed Start Form",
-        "operationId" : "getDeployedStartForm",
+        "operationId" : "getDeployedStartFormTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -8569,7 +8368,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the diagram of a process definition.",
         "description" : "Retrieves the diagram of a process definition.",
-        "operationId" : "getProcessDefinitionDiagram",
+        "operationId" : "getProcessDefinitionDiagramTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -8602,7 +8401,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the start form variables for a process definition (only if they are defined via the Generated Task Form approach).",
         "description" : "Retrieves the start form variables for a process definition (only if they are defined via the Generated Task Form approach). The start form variables take form data specified on the start event into account. If form fields are defined, the variable types and default values of the form fields are taken into account.",
-        "operationId" : "getFormVariables",
+        "operationId" : "getFormVariablesTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "variableNames",
@@ -8651,7 +8450,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Updates history time to live for process definition.",
         "description" : "Updates history time to live for process definition. The field is used within History cleanup.",
-        "operationId" : "updateHistoryTimeToLive",
+        "operationId" : "updateProcessHistoryTimeToLiveTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8693,7 +8492,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the rendered form for a process definition.",
         "description" : "Retrieves the rendered form for a process definition. This method can be used for getting the HTML rendering of a Generated Task Form.",
-        "operationId" : "getRenderedForm",
+        "operationId" : "getRenderedFormTenant",
         "produces" : [ "application/xhtml+xml" ],
         "parameters" : [ {
           "name" : "key",
@@ -8726,7 +8525,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Restart Process Instance.",
         "description" : "Restart Process Instance",
-        "operationId" : "restartProcessInstance",
+        "operationId" : "restartProcessInstanceTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8754,7 +8553,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Restart Process Instance Async.",
         "description" : "Restart Process Instance Async",
-        "operationId" : "restartProcessInstanceAsync",
+        "operationId" : "restartProcessInstanceAsyncTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8785,7 +8584,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Instantiates a given process definition.",
         "description" : "Instantiates a given process definition. Process variables and business key may be supplied in the request body.",
-        "operationId" : "startProcessInstance",
+        "operationId" : "startProcessInstanceTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8833,7 +8632,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the key of the start form for a process definition.",
         "description" : "Retrieves the key of the start form for a process definition. The form key corresponds to the `FormData#formKey` property in the engine.",
-        "operationId" : "getStartForm",
+        "operationId" : "getProcessStartFormTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -8869,7 +8668,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves runtime statistics of a given process definition, grouped by activities.",
         "description" : "Retrieves runtime statistics of a given process definition, grouped by activities. These statistics include the number of running activity instances, optionally the number of failed jobs and also optionally the number of incidents either grouped by incident types or for a specific incident type.\n Note: This does not include historic data.",
-        "operationId" : "getActivityStatistics",
+        "operationId" : "getActivityStatisticsTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "failedJobs",
@@ -8926,7 +8725,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Starts a process instance using a set of process variables and the business key.",
         "description" : "Starts a process instance using a set of process variables and the business key. If the start event has Form Field Metadata defined, the process engine will perform backend validation for any form fields which have validators defined. See Documentation on Generated Task Forms.",
-        "operationId" : "submitForm",
+        "operationId" : "submitFormTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -8977,7 +8776,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Activates or suspends a given process definition by id or by latest version of process definition key.",
         "description" : "Activates or suspends a given process definition by id or by latest version of process definition key.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateSuspensionStateTenant",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -9019,7 +8818,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the BPMN 2.",
         "description" : "Retrieves the BPMN 2.0 XML of a process definition.",
-        "operationId" : "getProcessDefinitionBpmn20Xml",
+        "operationId" : "getProcessDefinitionBpmn20XmlTenant",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -9052,7 +8851,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the BPMN 2.",
         "description" : "Retrieves the BPMN 2.0 XML of a process definition.",
-        "operationId" : "getProcessDefinitionBpmn20Xml",
+        "operationId" : "getProcessDefinitionBpmn20XmlKey",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "key",
@@ -9121,7 +8920,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Activates or suspends process definitions with the given process definition key.",
         "description" : "Activates or suspends process definitions with the given process definition key.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateProcessDefinitionSuspensionState",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -9201,7 +9000,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Get Deployed Start Form.",
         "description" : "Get Deployed Start Form",
-        "operationId" : "getDeployedStartForm",
+        "operationId" : "getProcessDeployedStartForm",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -9249,7 +9048,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the start form variables for a process definition (only if they are defined via the Generated Task Form approach).",
         "description" : "Retrieves the start form variables for a process definition (only if they are defined via the Generated Task Form approach). The start form variables take form data specified on the start event into account. If form fields are defined, the variable types and default values of the form fields are taken into account.",
-        "operationId" : "getFormVariables",
+        "operationId" : "getProcessFormVariables",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "variableNames",
@@ -9328,7 +9127,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Retrieves the rendered form for a process definition.",
         "description" : "Retrieves the rendered form for a process definition. This method can be used for getting the HTML rendering of a Generated Task Form.",
-        "operationId" : "getRenderedForm",
+        "operationId" : "getProcessRenderedForm",
         "produces" : [ "application/xhtml+xml" ],
         "parameters" : [ {
           "name" : "id",
@@ -9570,7 +9369,7 @@
         "tags" : [ "Process Definition" ],
         "summary" : "Activates or suspends a given process definition by id or by latest version of process definition key.",
         "description" : "Activates or suspends a given process definition by id or by latest version of process definition key.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateProcessDefinitionSuspensionStateId",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -9636,20 +9435,6 @@
         "operationId" : "getProcessInstances",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "subProcessInstance",
           "in" : "query",
           "description" : "Restrict query to all process instances that have the given process instance as a sub process instance. Takes a process instance id.",
@@ -10161,7 +9946,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Activates or suspends process instances with the given process definition id.",
         "description" : "Activates or suspends process instances with the given process definition id.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateInstanceSuspensionState",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -10336,7 +10121,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Activates or suspends a given process instance by id.",
         "description" : "Activates or suspends a given process instance by id.",
-        "operationId" : "updateSuspensionState",
+        "operationId" : "updateInstanceSuspensionStateId",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -10388,7 +10173,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Updates or deletes the variables in the context of a case execution.",
         "description" : "Updates or deletes the variables in the context of a case execution. The updates do not propagate upwards in the case execution hierarchy. Please note: deletion precedes update.",
-        "operationId" : "modifyVariables",
+        "operationId" : "modifyProccessVariables",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -10424,7 +10209,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Retrieves a variable from the context of a given case execution.",
         "description" : "Retrieves a variable from the context of a given case execution. Does not traverse the parent case execution hierarchy.",
-        "operationId" : "getVariable",
+        "operationId" : "getProcessVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -10462,7 +10247,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Sets a variable in the context of a given case execution.",
         "description" : "Sets a variable in the context of a given case execution. Update does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "putVariable",
+        "operationId" : "putProcessVariable",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -10499,7 +10284,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Deletes a variable in the context of a given case execution.",
         "description" : "Deletes a variable in the context of a given case execution. Deletion does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "deleteVariable",
+        "operationId" : "deleteProcessVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -10526,7 +10311,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Retrieves a binary variable from the context of a given case execution.",
         "description" : "Retrieves a binary variable from the context of a given case execution. Does not traverse the parent case execution hierarchy. Applicable for byte array and file variables.",
-        "operationId" : "getVariableBinary",
+        "operationId" : "getProcessVariableBinary",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -10557,7 +10342,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
         "description" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
-        "operationId" : "setBinaryVariable",
+        "operationId" : "setProcessBinaryVariable",
         "consumes" : [ "multipart/form-data" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -11279,11 +11064,6 @@
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "id",
-          "in" : "path",
           "description" : "Parameter id",
           "required" : true,
           "type" : "string"
@@ -11733,7 +11513,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves the form variables for a task (only if they are defined via the Generated Task Form approach).",
         "description" : "Retrieves the form variables for a task (only if they are defined via the Generated Task Form approach). The form variables take form data specified on the task into account. If form fields are defined, the variable types and default values of the form fields are taken into account.",
-        "operationId" : "getFormVariables",
+        "operationId" : "getTaskFormVariables",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "variableNames",
@@ -11876,7 +11656,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves all variables of a given task by id.",
         "description" : "Retrieves all variables of a given task by id.",
-        "operationId" : "getLocalVariables",
+        "operationId" : "getTaskLocalVariables",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -11898,7 +11678,7 @@
         "tags" : [ "Task" ],
         "summary" : "Updates or deletes the variables in the context of a case execution.",
         "description" : "Updates or deletes the variables in the context of a case execution. The updates do not propagate upwards in the case execution hierarchy. Please note: deletion precedes update.",
-        "operationId" : "modifyVariables",
+        "operationId" : "modifyTaskVariables",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -11934,7 +11714,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves a variable from the context of a given case execution.",
         "description" : "Retrieves a variable from the context of a given case execution. Does not traverse the parent case execution hierarchy.",
-        "operationId" : "getVariable",
+        "operationId" : "getTaskVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -11972,7 +11752,7 @@
         "tags" : [ "Task" ],
         "summary" : "Sets a variable in the context of a given case execution.",
         "description" : "Sets a variable in the context of a given case execution. Update does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "putVariable",
+        "operationId" : "putLocalVariable",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -12036,7 +11816,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves a binary variable from the context of a given case execution.",
         "description" : "Retrieves a binary variable from the context of a given case execution. Does not traverse the parent case execution hierarchy. Applicable for byte array and file variables.",
-        "operationId" : "getVariableBinary",
+        "operationId" : "getTaskVariableBinary",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -12067,7 +11847,7 @@
         "tags" : [ "Task" ],
         "summary" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
         "description" : "Sets the serialized value for a binary variable or the binary value for a file variable.",
-        "operationId" : "setBinaryVariable",
+        "operationId" : "setTaskBinaryVariable",
         "consumes" : [ "multipart/form-data" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -12106,7 +11886,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves the rendered form for a task.",
         "description" : "Retrieves the rendered form for a task. This method can be used to get the HTML rendering of a Generated Task Form.",
-        "operationId" : "getRenderedForm",
+        "operationId" : "getTaskRenderedForm",
         "produces" : [ "application/xhtml+xml" ],
         "parameters" : [ {
           "name" : "id",
@@ -12322,7 +12102,7 @@
         "tags" : [ "Task" ],
         "summary" : "Sets a variable in the context of a given case execution.",
         "description" : "Sets a variable in the context of a given case execution. Update does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "putVariable",
+        "operationId" : "putTaskVariable",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -12359,7 +12139,7 @@
         "tags" : [ "Task" ],
         "summary" : "Deletes a variable in the context of a given case execution.",
         "description" : "Deletes a variable in the context of a given case execution. Deletion does not propagate upwards in the case execution hierarchy.",
-        "operationId" : "deleteVariable",
+        "operationId" : "deleteTaskVariable",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "varId",
@@ -12459,20 +12239,6 @@
         "operationId" : "queryTenants",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "nameLike",
           "in" : "query",
           "description" : "Filter by the name that the parameter is a substring of.",
@@ -12552,7 +12318,6 @@
         "tags" : [ "Tenant" ],
         "summary" : "The `/tenant` resource supports two custom OPTIONS requests, one for the resource as such and one for individual tenant instances.",
         "description" : "The `/tenant` resource supports two custom OPTIONS requests, one for the resource as such and one for individual tenant instances. The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the `/tenant` resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
@@ -12740,7 +12505,6 @@
         "tags" : [ "Tenant" ],
         "summary" : "The `/tenant` resource supports two custom OPTIONS requests, one for the resource as such and one for individual tenant instances.",
         "description" : "The `/tenant` resource supports two custom OPTIONS requests, one for the resource as such and one for individual tenant instances. The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the `/tenant` resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -12783,7 +12547,6 @@
         "tags" : [ "Tenant" ],
         "summary" : "The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the resource.",
         "description" : "The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -12807,7 +12570,7 @@
         "tags" : [ "Tenant" ],
         "summary" : "Creates a membership between a tenant and a group.",
         "description" : "Creates a membership between a tenant and a group.",
-        "operationId" : "createMembership",
+        "operationId" : "createGroupMembership",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "groupId",
@@ -12838,7 +12601,7 @@
         "tags" : [ "Tenant" ],
         "summary" : "Deletes a membership between a tenant and a group.",
         "description" : "Deletes a membership between a tenant and a group.",
-        "operationId" : "deleteMembership",
+        "operationId" : "deleteGroupMembership",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "groupId",
@@ -12890,7 +12653,6 @@
         "tags" : [ "Tenant" ],
         "summary" : "The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the resource.",
         "description" : "The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the resource. If the user can perform an operation or not may depend on various things, including the users authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -12981,20 +12743,6 @@
         "operationId" : "queryUsers",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "lastName",
           "in" : "query",
           "description" : "Filter by the lastname of the user.",
@@ -13092,7 +12840,6 @@
         "tags" : [ "User" ],
         "summary" : "The `/user` resource supports two custom OPTIONS requests, one for the resource as such and one for individual user instances.",
         "description" : "The `/user` resource supports two custom OPTIONS requests, one for the resource as such and one for individual user instances. The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the `/user` resource. If the user can perform an operation or not may depend on various things, including the user's authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "responses" : {
           "200" : {
@@ -13256,7 +13003,6 @@
         "tags" : [ "User" ],
         "summary" : "The `/user` resource supports two custom OPTIONS requests, one for the resource as such and one for individual user instances.",
         "description" : "The `/user` resource supports two custom OPTIONS requests, one for the resource as such and one for individual user instances. The OPTIONS request allows checking for the set of available operations that the currently authenticated user can perform on the `/user` resource. If the user can perform an operation or not may depend on various things, including the user's authorizations to interact with this resource and the internal context of the process engine.",
-        "operationId" : "availableOperations",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -13385,20 +13131,6 @@
         "operationId" : "getVariableInstances",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "firstResult",
-          "in" : "query",
-          "description" : "Parameter firstResult",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "maxResults",
-          "in" : "query",
-          "description" : "Parameter maxResults",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "deserializeValues",
           "in" : "query",
           "description" : "Parameter deserializeObjectValues",
@@ -13445,11 +13177,6 @@
           "name" : "variableValues",
           "in" : "query",
           "description" : "Only include variable instances that have the certain values. Value filtering expressions are comma-separated and are structured as follows: A valid parameter value has the form key_operator_value. key is the variable name, operator is the comparison operator to be used and value the variable value. Note: Values are always treated as String objects on server side. Valid operator values are: eq - equal to; neq - not equal to; gt - greater than; gteq - greater than or equal to; lt - lower than; lteq - lower than or equal to; like. key and value may not contain underscore or comma characters.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "deserializeValues",
-          "in" : "query",
           "required" : false,
           "type" : "string"
         }, {

@@ -11,6 +11,7 @@ module.exports = function camunda() {
                 }
             };
         }
+
         handlers() {
             return {
                 receive: response => {
