@@ -30,15 +30,19 @@ module.exports = function camunda() {
                     parseResponse: false,
                     body: rest
                 }),
-                'camunda.process.start.request.send': ({process, ...rest}) => ({
-                    key: process,
-                    body: {
-                        variables: Object.entries(rest).reduce((prev, [name, value]) => {
-                            prev[name] = typeof value === 'object' ? value : {value};
-                            return prev;
-                        }, {})
-                    }
-                })
+                'camunda.process.start.request.send': ({process, ...rest}) => {
+                    const variables = Object.entries(rest).reduce((prev, [name, value]) => {
+                        prev[name] = typeof value === 'object' ? {value: JSON.stringify(value)} : {value};
+                        return prev;
+                    }, {});
+
+                    return {
+                        key: process,
+                        body: {
+                            variables
+                        }
+                    };
+                }
             };
         }
     };
