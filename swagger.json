@@ -11003,7 +11003,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves a task by id.",
         "description" : "Retrieves a task by id.",
-        "operationId" : "getTask",
+        "operationId" : "task.get",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",
@@ -12006,7 +12006,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves all variables visible from the task.",
         "description" : "Retrieves all variables visible from the task. A variable is visible from the task if it is a local task variable or declared in a parent scope of the task. See documentation on visiblity of variables.",
-        "operationId" : "getVariables",
+        "operationId" : "variables.get",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",

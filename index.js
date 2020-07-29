@@ -15,11 +15,12 @@ module.exports = function camunda() {
         handlers() {
             return {
                 receive: response => {
+                    if (response.code !== 200) return response.body;
                     return response.payload;
                 },
-                send: params => {
-                    return {body: params};
-                },
+                send: params => ({
+                    ...params, body: params
+                }),
                 'camunda.task.fail.request.send': ({id, ...rest}) => ({
                     id,
                     parseResponse: false,
@@ -42,6 +43,19 @@ module.exports = function camunda() {
                             variables
                         }
                     };
+                },
+                'camunda.variables.get.request.receive': response => {
+                    if (response.code !== 200) return response.body;
+                    return response.body.payload && Object.entries(response.body.payload).reduce((prev, [name, value]) => {
+                        try {
+                            const actualValue = JSON.parse(value.value);
+                            prev[name] = typeof actualValue === 'object' ? actualValue : value.value;
+                            return prev;
+                        } catch (e) {
+                            prev[name] = value.value;
+                            return prev;
+                        }
+                    }, {});
                 }
             };
         }
