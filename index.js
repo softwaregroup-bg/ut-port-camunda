@@ -14,8 +14,8 @@ module.exports = function camunda() {
 
         handlers() {
             return {
-                receive: response => {
-                    if (response.code !== 200) return response.body;
+                receive: (response, {mtid}) => {
+                    if (mtid === 'error') return response.body;
                     return response.payload;
                 },
                 send: params => ({
@@ -44,9 +44,9 @@ module.exports = function camunda() {
                         }
                     };
                 },
-                'camunda.variables.get.request.receive': response => {
-                    if (response.code !== 200) return response.body;
-                    return response.body.payload && Object.entries(response.body.payload).reduce((prev, [name, value]) => {
+                'camunda.variables.get.response.receive': (response, {mtid}) => {
+                    if (mtid === 'error') return response.body;
+                    return response.payload && Object.entries(response.payload).reduce((prev, [name, value]) => {
                         try {
                             const actualValue = JSON.parse(value.value);
                             prev[name] = typeof actualValue === 'object' ? actualValue : value.value;
