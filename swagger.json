@@ -10677,7 +10677,7 @@
         "tags" : [ "Task" ],
         "summary" : "Retrieves the number of tasks that fulfill a provided filter.",
         "description" : "Retrieves the number of tasks that fulfill a provided filter. Corresponds to the size of the result set when using the Get Tasks method.There are several query parameters (such as `assigneeExpression`) for specifying an EL expression. These are disabled by default to prevent remote code execution. See the section on security considerations for custom code in the user guide for details.",
-        "operationId" : "getTasksCount",
+        "operationId" : "task.count",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "assigneeExpression",
