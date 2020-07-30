@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports = function camunda() {
     return class camunda extends require('ut-port-http')(...arguments) {
         get defaults() {
@@ -8,8 +10,29 @@ module.exports = function camunda() {
                 },
                 openApi: {
                     camunda: require.resolve('./swagger')
-                }
+                },
+                host: 'camunda.k8s.softwaregroup-bg.com',
+                basePath: '/engine-rest/engine/default'
             };
+        }
+
+        init() {
+            try {
+                if (
+                    typeof this.config.openApi.camunda === 'string' &&
+                    !this.config.openApi.camunda.startsWith('http')
+                ) {
+                    const apiJson = JSON.parse(
+                        fs.readFileSync(this.config.openApi.camunda, 'utf-8')
+                    );
+                    if (apiJson.swagger) {
+                        apiJson.host = this.config.host;
+                        apiJson.basePath = this.config.basePath;
+                        this.config.openApi.camunda = apiJson;
+                    }
+                }
+            } catch (e) {}
+            return super.init(...arguments);
         }
 
         handlers() {
