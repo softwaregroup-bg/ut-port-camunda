@@ -10,7 +10,7 @@ module.exports = function camunda() {
                     camunda: [require.resolve('./swagger')]
                 },
                 mergeOptions: {
-                    mergeStragegies: {
+                    mergeStrategies: {
                         'openApi.camunda': 'combine'
                     }
                 }
