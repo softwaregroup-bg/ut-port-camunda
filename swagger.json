@@ -4876,7 +4876,7 @@
         "tags" : [ "External" ],
         "summary" : "Completes an external task by id and updates process variables.",
         "description" : "Completes an external task by id and updates process variables.",
-        "operationId" : "task.complete",
+        "operationId" : "externaltask.complete",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
@@ -11267,7 +11267,7 @@
         "tags" : [ "Task" ],
         "summary" : "Claims a task for a specific user.",
         "description" : "Claims a task for a specific user.Note: The difference with the Set Assignee method is that here a check is performed to see if the task already has a user assigned to it.",
-        "operationId" : "claim",
+        "operationId" : "task.claim",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -11396,7 +11396,7 @@
         "tags" : [ "Task" ],
         "summary" : "Completes a task and updates process variables.",
         "description" : "Completes a task and updates process variables.",
-        "operationId" : "complete",
+        "operationId" : "task.complete",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -11982,7 +11982,7 @@
         "tags" : [ "Task" ],
         "summary" : "Resets a task's assignee.",
         "description" : "Resets a task's assignee. If successful, the task is not assigned to a user.",
-        "operationId" : "unclaim",
+        "operationId" : "task.unclaim",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "id",

@@ -31,7 +31,7 @@ module.exports = function camunda() {
                     parseResponse: false,
                     body: rest
                 }),
-                'camunda.task.complete.request.send': ({id, ...rest}) => ({
+                'camunda.externaltask.complete.request.send': ({id, ...rest}) => ({
                     id,
                     parseResponse: false,
                     body: rest
@@ -61,6 +61,32 @@ module.exports = function camunda() {
                             return prev;
                         }
                     }, {});
+                },
+                'camunda.task.claim.request.send': ({id, ...rest}) => ({
+                    id,
+                    parseResponse: false,
+                    body: rest
+                }),
+                'camunda.task.unclaim.request.send': ({id}) => ({
+                    id,
+                    parseResponse: false
+                }),
+                'camunda.task.complete.request.send': ({id, variables = {}}) => {
+                    const transformedVars = Object.entries(variables).reduce((prev, [key, value]) => {
+                        const variableType = typeof value;
+                        prev[key] = {
+                            value: variableType === 'object' ? JSON.stringify(value) : value,
+                            type: variableType === 'object' ? 'string' : variableType
+                        };
+                        return prev;
+                    }, {});
+                    return {
+                        id,
+                        parseResponse: false,
+                        body: {
+                            variables: transformedVars
+                        }
+                    };
                 }
             };
         }
