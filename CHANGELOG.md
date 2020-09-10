@@ -1,3 +1,7 @@
+## [7.0.4](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.0.3...v7.0.4) (2020-09-10)
+
+
+
 ## [7.0.3](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.0.2...v7.0.3) (2020-06-02)
 
 
