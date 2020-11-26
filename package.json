@@ -1,6 +1,6 @@
 {
   "name": "ut-port-camunda",
-  "version": "7.0.4",
+  "version": "7.1.0",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
