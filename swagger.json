@@ -10879,6 +10879,11 @@
           "required" : false,
           "type" : "string"
         }, {
+          "name": "candidateGroups",
+          "in": "query",
+          "type": "string",
+          "description": "Restrict to tasks that are offered to any of the given candidate groups. Takes a\ncomma-separated list of group names, so for example `developers,support,sales`."
+        }, {
           "name" : "candidateGroup",
           "in" : "query",
           "description" : "Only include tasks that are offered to the given group.",
