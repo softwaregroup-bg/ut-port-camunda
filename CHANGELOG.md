@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.1.0...v7.1.1) (2021-01-08)
+
+
+### Bug Fixes
+
+* allow candidateGroups filter on task.count ([597ebf0](https://github.com/softwaregroup-bg/ut-port-camunda/commit/597ebf00660033fa8b60758e5cb838c48bb4132a))
+
+
+
 # [7.1.0](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.0.4...v7.1.0) (2020-11-26)
 
 
