@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.1.1...v7.1.2) (2021-03-01)
+
+
+### Bug Fixes
+
+* add createdAfter, createdBefore query params to task.count api ([f954fcf](https://github.com/softwaregroup-bg/ut-port-camunda/commit/f954fcf672d37c64c1db093e6406231bd0dc712d))
+
+
+
 ## [7.1.1](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.1.0...v7.1.1) (2021-01-08)
 
 
