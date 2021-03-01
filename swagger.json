@@ -10937,6 +10937,16 @@
           "description" : "Only include tasks that the given user is involved in. A user is involved in a task if an identity link exists between task and user (e.g., the user is the assignee).",
           "required" : false,
           "type" : "string"
+        }, {
+          "name": "createdAfter",
+          "in": "query",
+          "type": "string",
+          "description": "Restrict to tasks that were created after the given date. By\n[default](https://docs.camunda.org/manual/7.13/reference/rest/overview/date-format/), the date must have the\nformat `yyyy-MM-dd\u0027T\u0027HH:mm:ss.SSSZ`, e.g., `2013-01-23T14:42:45.342+0200`."
+        }, {
+          "name": "createdBefore",
+          "in": "query",
+          "type": "string",
+          "description": "Restrict to tasks that were created before the given date. By\n[default](https://docs.camunda.org/manual/7.13/reference/rest/overview/date-format/), the date must have the\nformat `yyyy-MM-dd\u0027T\u0027HH:mm:ss.SSSZ`, e.g., `2013-01-23T14:42:45.332+0200`."
         }],
         "responses" : {
           "200" : {
