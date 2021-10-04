@@ -1,3 +1,72 @@
+const parseInternalVariables = variables => variables && Object.entries(variables).reduce((prev, [name, value]) => {
+    prev[name] = parseInternal(value);
+    return prev;
+}, {});
+
+const parseInternal = value => {
+    try {
+        const actualValue = JSON.parse(value.value);
+        return typeof actualValue === 'object' ? actualValue : value.value;
+    } catch (e) {
+        return value.value;
+    }
+};
+
+const parseExternalVariables = variables => Object.entries(variables).reduce((prev, [key, value]) => {
+    prev[key] = parseExternalVariable(value);
+    return prev;
+}, {});
+
+const parseExternalVariable = variableValue => {
+    const variableType = typeof variableValue;
+    // map js type to java class type
+    switch (variableType) {
+        case 'string':
+            return {
+                value: variableValue,
+                type: 'String'
+            };
+
+        case 'bigint':
+        case 'symbol':
+            return {
+                value: variableValue.toString(),
+                type: 'String'
+            };
+
+        case 'number':
+            if (Number.isInteger(variableValue)) {
+                return {
+                    value: variableValue,
+                    type: 'Integer'
+                };
+            }
+            return {
+                value: variableValue,
+                type: 'Double'
+            };
+
+        case 'boolean':
+            return {
+                value: variableValue,
+                type: 'Boolean'
+            };
+
+        case 'object':
+            return {
+                value: JSON.stringify(variableValue),
+                type: 'String'
+            };
+
+        default:
+            // undefined/function
+            return {
+                value: null,
+                type: 'String'
+            };
+    }
+};
+
 module.exports = function camunda() {
     return class camunda extends require('ut-port-http')(...arguments) {
         get defaults() {
@@ -26,41 +95,44 @@ module.exports = function camunda() {
                 send: params => ({
                     ...params, body: params
                 }),
-                'camunda.task.fail.request.send': ({id, ...rest}) => ({
-                    id,
-                    parseResponse: false,
-                    body: rest
-                }),
-                'camunda.externaltask.complete.request.send': ({id, ...rest}) => ({
-                    id,
-                    parseResponse: false,
-                    body: rest
-                }),
-                'camunda.process.start.request.send': ({process, ...rest}) => {
-                    const variables = Object.entries(rest).reduce((prev, [name, value]) => {
-                        prev[name] = typeof value === 'object' ? {value: JSON.stringify(value)} : {value};
-                        return prev;
-                    }, {});
-
+                'camunda.process.start.request.send': ({process, ...variables}) => {
                     return {
                         key: process,
                         body: {
-                            variables
+                            variables: parseExternalVariables(variables)
                         }
                     };
                 },
                 'camunda.variables.get.response.receive': (response, {mtid}) => {
                     if (mtid === 'error') return response.body;
-                    return response.payload && Object.entries(response.payload).reduce((prev, [name, value]) => {
-                        try {
-                            const actualValue = JSON.parse(value.value);
-                            prev[name] = typeof actualValue === 'object' ? actualValue : value.value;
-                            return prev;
-                        } catch (e) {
-                            prev[name] = value.value;
-                            return prev;
+                    return parseInternalVariables(response.payload);
+                },
+
+                'camunda.external.fetch.response.receive': (response, {mtid}) => {
+                    if (mtid === 'error') return response.body;
+                    if (!Array.isArray(response.payload)) {
+                        return response.payload;
+                    }
+                    return response.payload.map(task => ({...task, variables: parseInternalVariables(task.variables)}));
+                },
+                'camunda.externaltask.complete.request.send': ({ id, workerId, variables = {} }) => {
+                    return {
+                        id: id,
+                        parseResponse: false,
+                        body: {
+                            workerId: workerId,
+                            variables: parseExternalVariables(variables)
                         }
-                    }, {});
+                    };
+                },
+                'camunda.task.complete.request.send': ({id, variables = {}}) => {
+                    return {
+                        id,
+                        parseResponse: false,
+                        body: {
+                            variables: parseExternalVariables(variables)
+                        }
+                    };
                 },
                 'camunda.task.claim.request.send': ({id, ...rest}) => ({
                     id,
@@ -71,23 +143,11 @@ module.exports = function camunda() {
                     id,
                     parseResponse: false
                 }),
-                'camunda.task.complete.request.send': ({id, variables = {}}) => {
-                    const transformedVars = Object.entries(variables).reduce((prev, [key, value]) => {
-                        const variableType = typeof value;
-                        prev[key] = {
-                            value: variableType === 'object' ? JSON.stringify(value) : value,
-                            type: variableType === 'object' ? 'string' : variableType
-                        };
-                        return prev;
-                    }, {});
-                    return {
-                        id,
-                        parseResponse: false,
-                        body: {
-                            variables: transformedVars
-                        }
-                    };
-                }
+                'camunda.task.fail.request.send': ({id, ...rest}) => ({
+                    id,
+                    parseResponse: false,
+                    body: rest
+                })
             };
         }
     };
