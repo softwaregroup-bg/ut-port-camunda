@@ -1,3 +1,12 @@
+# [7.2.0](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.1.2...v7.2.0) (2021-10-05)
+
+
+### Features
+
+* VFZ-2314 - keeping camunda variable types consistent ([2d2def9](https://github.com/softwaregroup-bg/ut-port-camunda/commit/2d2def9d65f2298b4b65524138d9718dd5248051))
+
+
+
 ## [7.1.2](https://github.com/softwaregroup-bg/ut-port-camunda/compare/v7.1.1...v7.1.2) (2021-03-01)
 
 
