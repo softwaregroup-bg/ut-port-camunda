@@ -10013,7 +10013,7 @@
         "tags" : [ "Process Instance" ],
         "summary" : "Deletes a running process instance by id.",
         "description" : "Deletes a running process instance by id.",
-        "operationId" : "deleteProcessInstance",
+        "operationId" : "processinstance.delete",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "skipCustomListeners",
