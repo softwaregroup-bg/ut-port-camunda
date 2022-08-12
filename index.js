@@ -147,7 +147,13 @@ module.exports = function camunda() {
                     id,
                     parseResponse: false,
                     body: rest
-                })
+                }),
+                'camunda.processinstance.delete.request.send': ({ id }) => {
+                    return {
+                        id: id,
+                        parseResponse: false
+                    };
+                }
             };
         }
     };
