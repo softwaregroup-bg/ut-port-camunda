@@ -5,7 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "tap": "^15.0.10",
-    "ut-tools": "^6.39.0"
+    "ut-tools": "^6.41.5"
   },
   "peerDependencies": {
     "ut-bus": "^7.10.1",
