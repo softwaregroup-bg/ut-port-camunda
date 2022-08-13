@@ -113,11 +113,11 @@ module.exports = function camunda() {
                     }
                     return response.payload.map(task => ({...task, variables: parseInternalVariables(task.variables)}));
                 },
-                'camunda.externaltask.complete.request.send': ({ id, workerId, variables = {} }) => ({
+                'camunda.externaltask.complete.request.send': ({id, workerId, variables = {}}) => ({
                     id,
                     parseResponse: false,
                     body: {
-                        workerId: workerId,
+                        workerId,
                         variables: parseExternalVariables(variables)
                     }
                 }),
