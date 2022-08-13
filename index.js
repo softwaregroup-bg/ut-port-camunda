@@ -95,14 +95,12 @@ module.exports = function camunda() {
                 send: params => ({
                     ...params, body: params
                 }),
-                'camunda.process.start.request.send': ({process, ...variables}) => {
-                    return {
-                        key: process,
-                        body: {
-                            variables: parseExternalVariables(variables)
-                        }
-                    };
-                },
+                'camunda.process.start.request.send': ({process, ...variables}) => ({
+                    key: process,
+                    body: {
+                        variables: parseExternalVariables(variables)
+                    }
+                }),
                 'camunda.variables.get.response.receive': (response, {mtid}) => {
                     if (mtid === 'error') return response.body;
                     return parseInternalVariables(response.payload);
@@ -115,25 +113,21 @@ module.exports = function camunda() {
                     }
                     return response.payload.map(task => ({...task, variables: parseInternalVariables(task.variables)}));
                 },
-                'camunda.externaltask.complete.request.send': ({ id, workerId, variables = {} }) => {
-                    return {
-                        id: id,
-                        parseResponse: false,
-                        body: {
-                            workerId: workerId,
-                            variables: parseExternalVariables(variables)
-                        }
-                    };
-                },
-                'camunda.task.complete.request.send': ({id, variables = {}}) => {
-                    return {
-                        id,
-                        parseResponse: false,
-                        body: {
-                            variables: parseExternalVariables(variables)
-                        }
-                    };
-                },
+                'camunda.externaltask.complete.request.send': ({ id, workerId, variables = {} }) => ({
+                    id,
+                    parseResponse: false,
+                    body: {
+                        workerId: workerId,
+                        variables: parseExternalVariables(variables)
+                    }
+                }),
+                'camunda.task.complete.request.send': ({id, variables = {}}) => ({
+                    id,
+                    parseResponse: false,
+                    body: {
+                        variables: parseExternalVariables(variables)
+                    }
+                }),
                 'camunda.task.claim.request.send': ({id, ...rest}) => ({
                     id,
                     parseResponse: false,
@@ -148,12 +142,11 @@ module.exports = function camunda() {
                     parseResponse: false,
                     body: rest
                 }),
-                'camunda.processinstance.delete.request.send': ({ id }) => {
-                    return {
-                        id: id,
-                        parseResponse: false
-                    };
-                }
+                'camunda.processinstance.delete.request.send': ({id, ...rest}) => ({
+                    id,
+                    parseResponse: false,
+                    body: rest
+                })
             };
         }
     };
